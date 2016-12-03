@@ -1,0 +1,24 @@
+{
+  "name": "enviro-monitor-frontend",
+  "version": "0.0.0",
+  "description": "Frontend app for EnviroMonitor project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnviroMonitor/EnviroMonitorFrontend.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/EnviroMonitor/EnviroMonitorFrontend/issues"
+  },
+  "homepage": "https://github.com/EnviroMonitor/EnviroMonitorFrontend#readme",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "webpack": "^1.13.3"
+  }
+}
