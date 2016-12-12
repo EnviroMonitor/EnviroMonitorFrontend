@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register tests/**/*.spec.js",
     "test:watch": "npm run test -- --watch",
+    "coverage": "nyc --reporter text --reporter text-summary --reporter html npm run test",
     "start": "webpack-dev-server",
     "build": "webpack"
   },
