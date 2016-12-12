@@ -49,4 +49,5 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-
+#some leftover files after running mocha
+.tmp
