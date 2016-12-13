@@ -1,0 +1,50 @@
+{
+  "name": "enviro-monitor-frontend",
+  "version": "0.0.0",
+  "description": "Frontend app for EnviroMonitor project",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register tests/**/*.spec.js",
+    "test:watch": "npm run test -- --watch",
+    "coverage": "nyc --reporter text --reporter text-summary --reporter html npm run test",
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnviroMonitor/EnviroMonitorFrontend.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/EnviroMonitor/EnviroMonitorFrontend/issues"
+  },
+  "homepage": "https://github.com/EnviroMonitor/EnviroMonitorFrontend#readme",
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "clean-webpack-plugin": "^0.1.14",
+    "css-loader": "^0.26.1",
+    "enzyme": "^2.6.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.24.1",
+    "mocha": "^3.2.0",
+    "nyc": "^10.0.0",
+    "purifycss-webpack-plugin": "^2.0.3",
+    "react-addons-test-utils": "^15.4.1",
+    "sinon": "^1.17.6",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-merge": "^1.0.2",
+    "webpack-validator": "^2.2.11"
+  },
+  "dependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  }
+}
