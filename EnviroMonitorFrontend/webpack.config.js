@@ -27,7 +27,7 @@ const common = {
         new HtmlWebpackPlugin({
             title: 'Environment Monitor',
             template: 'templates/index.ejs',
-            inject: 'body',
+            inject: 'body'
         })
     ]
 };
