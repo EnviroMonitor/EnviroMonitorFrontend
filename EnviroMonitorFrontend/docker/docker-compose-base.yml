@@ -1,9 +1,9 @@
 version: '2'
 services:
   base:
-    build: .
+    build: ../
     volumes:
-      - .:/code
+      - ../:/code
     logging:
         driver: "json-file"
         options:

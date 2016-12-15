@@ -17,7 +17,7 @@ if [ "$1" = 'start' ]; then
     npm prune
     npm install
     # change owner on each start
-    find . -user root -type d -print0 | xargs -0 chown ${DEFAULT_UID}:${DEFAULT_GID} -R
+    find . -user root -print0 | xargs -0 chown ${DEFAULT_UID}:${DEFAULT_GID}
 fi
 
 exec npm run "$1"

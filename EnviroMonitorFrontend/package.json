@@ -8,8 +8,7 @@
     "test:watch": "npm run test -- --watch",
     "coverage": "nyc --reporter text --reporter text-summary --reporter html npm run test",
     "start": "webpack-dev-server --content-base ./build/",
-    "build": "webpack",
-    "build:watch": "webpack --progress --colors --watch"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

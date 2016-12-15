@@ -37,7 +37,6 @@ var config;
 // Detect how npm is run and branch based on that
 switch(process.env.npm_lifecycle_event) {
     case 'build':
-    case 'build:watch':
         config = merge(
             common,
             configParts.extractCSS(PATHS.styles),
