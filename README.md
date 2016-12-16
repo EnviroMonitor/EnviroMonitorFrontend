@@ -2,6 +2,8 @@
 
 Frontend SPA for EnviroMonitor 
 
+[![Build Status](https://travis-ci.org/EnviroMonitor/EnviroMonitorFrontend.svg?branch=6-adding-ci-integration)](https://travis-ci.org/EnviroMonitor/EnviroMonitorFrontend)
+
 ## Useful commands
 
 - ``npm run build`` - build files to be used for production
