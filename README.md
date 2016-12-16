@@ -2,7 +2,8 @@
 
 Frontend SPA for EnviroMonitor 
 
-[![Build Status](https://travis-ci.org/EnviroMonitor/EnviroMonitorFrontend.svg?branch=6-adding-ci-integration)](https://travis-ci.org/EnviroMonitor/EnviroMonitorFrontend)
+[![Build Status](https://travis-ci.org/EnviroMonitor/EnviroMonitorFrontend.svg?branch=master)](https://travis-ci.org/EnviroMonitor/EnviroMonitorFrontend)
+[![Coverage Status](https://coveralls.io/repos/github/EnviroMonitor/EnviroMonitorFrontend/badge.svg?branch=master)](https://coveralls.io/github/EnviroMonitor/EnviroMonitorFrontend?branch=add_coveralls)
 
 ## Useful commands
 
