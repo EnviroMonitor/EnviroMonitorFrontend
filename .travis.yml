@@ -1,4 +1,11 @@
+# testing frondend
 language: node_js
 node_js:
   - "6"
   - "5"
+# testing building docker container
+services:
+  - docker
+before_install:
+  - ln -s ./docker/docker-compose.yml ./docker-compose.yml
+  - docker-compose build
