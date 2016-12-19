@@ -1,10 +1,10 @@
-# testing frondend
-language: node_js
-node_js:
-  - "6"
-# testing building docker container
+sudo: required
 services:
   - docker
 before_install:
   - ln -s ./docker/docker-compose.yml ./docker-compose.yml
   - docker-compose build
+# testing inside docker container
+# we also test building of docker image
+script:
+  - docker-compose run --rm server test
