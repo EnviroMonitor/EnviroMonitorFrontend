@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register tests/**/*.spec.js",
     "test:watch": "npm run test -- --watch",
-    "coverage": "nyc --reporter text --reporter text-summary --reporter html npm run test",
+    "coverage": "nyc npm run test",
+    "coverage:coveralls": "nyc --reporter=text-lcov npm run test | coveralls",
     "start": "webpack-dev-server --content-base ./build/",
     "build": "webpack"
   },
@@ -28,6 +29,7 @@
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.14",
+    "coveralls": "^2.11.15",
     "css-loader": "^0.26.1",
     "enzyme": "^2.6.0",
     "extract-text-webpack-plugin": "^1.0.1",
