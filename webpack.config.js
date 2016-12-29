@@ -11,6 +11,7 @@ const PATHS = {
         path.join(__dirname, 'node_modules', 'leaflet', 'dist', 'leaflet.css')
     ],
     images: [
+        path.join(__dirname, 'images'),
         path.join(__dirname, 'node_modules', 'leaflet', 'dist', 'images')
     ],
     tests: path.join(__dirname, 'tests'),

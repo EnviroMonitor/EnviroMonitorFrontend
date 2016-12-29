@@ -147,7 +147,7 @@ exports.addImages = function (paths) {
             loaders: [
                 {
                     test: /\.(jpg|png)$/,
-                    loaders: ['file-loader?name=[name].[ext]'],
+                    loaders: ['file-loader'],
                     include: paths
                 }
             ]

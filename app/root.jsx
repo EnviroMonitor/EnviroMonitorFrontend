@@ -1,5 +1,5 @@
 import React from 'react';
-import SmogMap from './components/map';
+import SmogMap from './components/SmogMap';
 import Data from './components/data';
 
 
