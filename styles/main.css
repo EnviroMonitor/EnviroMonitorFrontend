@@ -1,0 +1,5 @@
+.leaflet-container {
+    position: absolute;
+    width: 99%;
+    height: 99%;
+}
