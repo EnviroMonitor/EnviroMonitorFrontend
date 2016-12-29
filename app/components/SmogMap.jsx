@@ -1,18 +1,13 @@
 import React from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import noDataImageUrl from '../../images/marker-no-data.png';
-import Leaflet from 'leaflet'
-
-console.info(noDataImageUrl);
-
-const noDataIcon = Leaflet.icon({
-    iconUrl: noDataImageUrl,
-});
+import {noDataIcon, okIcon, warningIcon, errorIcon} from '../helpers/mapMarkers';
 
 export default class SmogMap extends React.Component {
     render () {
         const position = [51.505, -0.09];
         const position2 = [51.515, -0.08];
+        const position3 = [51.525, -0.07];
+        const position4 = [51.535, -0.06];
 
         return (<Map center={position} zoom={13}>
             <TileLayer
@@ -24,7 +19,17 @@ export default class SmogMap extends React.Component {
                     <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
                 </Popup>
             </Marker>
-            <Marker position={position2}>
+            <Marker position={position2} icon={okIcon}>
+                <Popup>
+                    <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
+                </Popup>
+            </Marker>
+            <Marker position={position3} icon={warningIcon}>
+                <Popup>
+                    <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
+                </Popup>
+            </Marker>
+            <Marker position={position4} icon={errorIcon}>
                 <Popup>
                     <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
                 </Popup>
