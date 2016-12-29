@@ -6,7 +6,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
     app: path.join(__dirname, 'app'),
-    styles: path.join(__dirname, 'styles/main.css'),
+    styles: [
+        path.join(__dirname, 'styles', 'main.css'),
+        path.join(__dirname, 'node_modules', 'leaflet', 'dist', 'leaflet.css')
+    ],
+    images: [
+        path.join(__dirname, 'node_modules', 'leaflet', 'dist', 'images')
+    ],
     tests: path.join(__dirname, 'tests'),
     build: path.join(__dirname, 'build')
 };
@@ -40,6 +46,7 @@ switch(process.env.npm_lifecycle_event) {
         config = merge(
             common,
             configParts.extractCSS(PATHS.styles),
+            configParts.addImages(PATHS.images),
             {
                 devtool: 'source-map',
                 output: {
@@ -54,7 +61,7 @@ switch(process.env.npm_lifecycle_event) {
                 'production'),
             configParts.extractBundle({
                 name: 'vendor',
-                entries: ['react']
+                entries: Object.keys(require('./package.json').dependencies)
             }),
             configParts.purifyCSS([PATHS.app]),
             configParts.clean(PATHS.build),
@@ -68,6 +75,7 @@ switch(process.env.npm_lifecycle_event) {
                 devtool: 'eval-source-map'
             },
             configParts.setupCSS(PATHS.styles),
+            configParts.addImages(PATHS.images),
             configParts.adjustJSX(PATHS.app),
             configParts.devServer({
                 // Customize host/port here if needed
