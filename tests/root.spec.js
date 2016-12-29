@@ -11,10 +11,14 @@ describe('<Root/>', () => {
     });
 
     it('shows the main component', () => {
-        expect(wrapper.find('h1')).to.exist;
+        expect(wrapper.find('div.root')).to.exist;
     });
 
-    it('Making sure it\'s rendered by react', () => {
-        expect(wrapper.find('h1').text()).to.contain('I\'ve been rendered with React');
+    it('Making sure it has <SmogMap/> element defined', () => {
+        expect(wrapper.find('SmogMap')).to.exist;
+    });
+
+    it('Making sure it has <Data/> element defined', () => {
+        expect(wrapper.find('SmogMap')).to.exist;
     });
 });
