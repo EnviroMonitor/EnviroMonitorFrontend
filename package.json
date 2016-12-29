@@ -7,7 +7,7 @@
     "test": "mocha tests/testSetup.js tests/*",
     "test:watch": "npm run test -- --watch",
     "coverage": "nyc npm run test",
-    "coverage:coveralls": "nyc --reporter=text-lcov npm run test",
+    "coverage:coveralls": "nyc --reporter=text-lcov npm run test | coveralls",
     "start": "webpack-dev-server --content-base ./build/",
     "build": "webpack"
   },
