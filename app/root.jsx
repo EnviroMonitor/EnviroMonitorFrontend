@@ -1,6 +1,6 @@
 import React from 'react';
 import SmogMap from './components/SmogMap';
-import Data from './components/data';
+import DataHolder from './components/DataHolder';
 
 
 class Root extends React.Component {
@@ -8,7 +8,7 @@ class Root extends React.Component {
         return (
             <div className="root">
                 <SmogMap/>
-                <Data/>
+                <DataHolder/>
             </div>
         );
     }
