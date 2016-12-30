@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha tests/testSetup.js tests/*",
     "test:watch": "npm run test -- --watch",
-    "coverage": "nyc npm run test",
+    "coverage": "nyc --reporter=text --reporter=text-summary --reporter=html npm run test",
     "coverage:coveralls": "nyc --reporter=text-lcov npm run test | coveralls",
     "start": "webpack-dev-server --content-base ./build/",
     "build": "webpack"
@@ -64,10 +64,7 @@
     "branches": 99,
     "include": [
       "app/**/*.js",
-      "app/*.js",
-      "app/**/*.jsx",
-      "app/*.jsx",
-      "app/components/SmogMap.jsx"
+      "app/**/*.jsx"
     ],
     "exclude": [
       "*.spec.js"
@@ -78,10 +75,5 @@
     "cache": true,
     "all": true,
     "check-coverage": true
-  },
-  "reporter": [
-    "text",
-    "text-summary",
-    "html"
-  ]
+  }
 }
