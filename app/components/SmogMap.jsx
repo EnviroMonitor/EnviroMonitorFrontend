@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import {noDataIcon, okIcon, warningIcon, errorIcon} from '../helpers/mapMarkers';
 
-export default class SmogMap extends React.Component {
+
+
+class SmogMap extends React.Component {
     render () {
         const position = [51.505, -0.09];
         const position2 = [51.515, -0.08];
@@ -37,3 +41,14 @@ export default class SmogMap extends React.Component {
         </Map>)
     }
 }
+SmogMap.propTypes = {
+    isFetching: React.PropTypes.bool.isRequired,
+    data: React.PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => ({
+    isFetching: state.get('mapData').get('isFetching'),
+    data: state.get('mapData').get('data')
+});
+
+export default connect(mapStateToProps)(SmogMap);

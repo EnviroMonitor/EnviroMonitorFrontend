@@ -49,13 +49,16 @@
     "webpack-validator": "^2.2.11"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
     "leaflet": "^1.0.2",
     "lodash.assign": "^4.2.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-leaflet": "^1.0.2",
     "react-redux": "^5.0.1",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-immutable": "^3.0.9",
+    "redux-thunk": "^2.1.0"
   },
   "nyc": {
     "lines": 99,
