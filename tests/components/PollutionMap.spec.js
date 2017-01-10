@@ -15,7 +15,7 @@ describe('<PollutionMap/>', () => {
     const initialState = {
         mapData: {
             isFetching: false,
-            data: []
+            data: {}
         }
     };
 

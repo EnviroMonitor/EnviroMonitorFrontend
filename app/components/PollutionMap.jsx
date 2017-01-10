@@ -8,36 +8,38 @@ import {noDataIcon, okIcon, warningIcon, errorIcon} from '../helpers/mapMarkers'
 
 class PollutionMap extends React.Component {
     render () {
-        const position = [51.505, -0.09];
-        const position2 = [51.515, -0.08];
-        const position3 = [51.525, -0.07];
-        const position4 = [51.535, -0.06];
+        const center = [52.229, 21.011];
 
-        return (<Map center={position} zoom={13}>
+        const data = this.props.data.toJS();
+
+        const markers = data.map((markerData, iterator) => {
+            const value = markerData.value;
+            let icon;
+            if (value === null) {
+                icon = noDataIcon;
+            } else if (value < 50) {
+                icon = okIcon;
+            } else if (value < 150) {
+                icon = warningIcon;
+            } else {
+                icon = errorIcon;
+            }
+
+            return (
+                <Marker key={iterator} position={markerData.position} icon={icon}>
+                    <Popup>
+                        <span>{markerData.description}</span>
+                    </Popup>
+                </Marker>
+            );
+        });
+
+        return (<Map center={center} zoom={13}>
             <TileLayer
                 url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            <Marker position={position} icon={noDataIcon}>
-                <Popup>
-                    <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
-                </Popup>
-            </Marker>
-            <Marker position={position2} icon={okIcon}>
-                <Popup>
-                    <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
-                </Popup>
-            </Marker>
-            <Marker position={position3} icon={warningIcon}>
-                <Popup>
-                    <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
-                </Popup>
-            </Marker>
-            <Marker position={position4} icon={errorIcon}>
-                <Popup>
-                    <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
-                </Popup>
-            </Marker>
+            {markers}
         </Map>)
     }
 }

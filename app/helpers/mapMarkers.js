@@ -5,6 +5,11 @@ import errorImageUrl from '../../images/marker-error.png';
 import Leaflet from 'leaflet';
 import assign from 'lodash.assign';
 
+export const METRIC_TYPES = {
+    PM10: "PM_10",
+    PM25: "PM_25"
+};
+
 const defaultProperties = {
     iconSize: [25, 41],
     iconAnchor: [13, 40],
