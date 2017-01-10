@@ -1,13 +1,13 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import SmogMap from '../../app/components/SmogMap';
+import PollutionMap from '../../app/components/PollutionMap';
 
-describe('<SmogMap/>', () => {
+describe('<PollutionMap/>', () => {
     let wrapper;
 
     beforeEach(() => {
-        wrapper = shallow(<SmogMap/>);
+        wrapper = shallow(<PollutionMap/>);
     });
 
     it('Making sure it has <Map/> element defined', () => {

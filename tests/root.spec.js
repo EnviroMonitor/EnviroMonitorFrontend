@@ -14,8 +14,8 @@ describe('<Root/>', () => {
         expect(wrapper.find('div.root')).to.exist;
     });
 
-    it('Making sure it has <SmogMap/> element defined', () => {
-        expect(wrapper.find('SmogMap')).to.exist;
+    it('Making sure it has <PollutionMap/> element defined', () => {
+        expect(wrapper.find('PollutionMap')).to.exist;
     });
 
     it('Making sure it has <DataHolder/> element defined', () => {

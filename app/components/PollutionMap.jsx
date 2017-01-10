@@ -6,7 +6,7 @@ import {noDataIcon, okIcon, warningIcon, errorIcon} from '../helpers/mapMarkers'
 
 
 
-class SmogMap extends React.Component {
+class PollutionMap extends React.Component {
     render () {
         const position = [51.505, -0.09];
         const position2 = [51.515, -0.08];
@@ -41,7 +41,7 @@ class SmogMap extends React.Component {
         </Map>)
     }
 }
-SmogMap.propTypes = {
+PollutionMap.propTypes = {
     isFetching: React.PropTypes.bool.isRequired,
     data: React.PropTypes.object.isRequired
 };
@@ -51,4 +51,4 @@ const mapStateToProps = (state) => ({
     data: state.get('mapData').get('data')
 });
 
-export default connect(mapStateToProps)(SmogMap);
+export default connect(mapStateToProps)(PollutionMap);
