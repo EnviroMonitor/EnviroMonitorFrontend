@@ -6,7 +6,7 @@ import {noDataIcon, okIcon, warningIcon, errorIcon} from '../helpers/mapMarkers'
 
 
 
-class PollutionMap extends React.Component {
+export class PollutionMap extends React.Component {
     render () {
         const center = [52.229, 21.011];
 
@@ -35,17 +35,15 @@ class PollutionMap extends React.Component {
         });
 
         return (<Map center={center} zoom={13}>
-            <TileLayer
-                url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            />
+            {this.props.mapSpec}
             {markers}
         </Map>)
     }
 }
 PollutionMap.propTypes = {
     isFetching: React.PropTypes.bool.isRequired,
-    data: React.PropTypes.object.isRequired
+    data: React.PropTypes.object.isRequired,
+    mapSpec: React.PropTypes.node
 };
 
 const mapStateToProps = (state) => ({
@@ -53,4 +51,18 @@ const mapStateToProps = (state) => ({
     data: state.get('mapData').get('data')
 });
 
-export default connect(mapStateToProps)(PollutionMap);
+export const ConnectedPollutionMap = connect(mapStateToProps)(PollutionMap);
+
+const PollutionMapWrapper = () => {
+
+    const mapSpec = (
+        <TileLayer
+            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+    );
+
+    return (<ConnectedPollutionMap mapSpec={mapSpec}/>)
+};
+
+export default PollutionMapWrapper
