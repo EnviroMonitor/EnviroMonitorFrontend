@@ -1,12 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import {noDataIcon, okIcon, warningIcon, errorIcon} from '../helpers/mapMarkers';
+import { invalidateAndFetchData } from '../actions';
 
 
 
 export class PollutionMap extends React.Component {
+
+    componentDidMount() {
+        console.info('invalidate!')
+        this.props.invalidateAndFetchData([52.229, 21.011], 5, 5);
+    }
+
     render () {
         const center = [52.229, 21.011];
 
@@ -43,7 +51,8 @@ export class PollutionMap extends React.Component {
 PollutionMap.propTypes = {
     isFetching: React.PropTypes.bool.isRequired,
     data: React.PropTypes.object.isRequired,
-    mapSpec: React.PropTypes.node
+    invalidateAndFetchData: React.PropTypes.func.isRequired,
+    mapSpec: React.PropTypes.node,
 };
 
 const mapStateToProps = (state) => ({
@@ -51,7 +60,11 @@ const mapStateToProps = (state) => ({
     data: state.get('mapData').get('data')
 });
 
-export const ConnectedPollutionMap = connect(mapStateToProps)(PollutionMap);
+const mapDispatchToProps = (dispatch) => ({
+    invalidateAndFetchData: bindActionCreators(invalidateAndFetchData, dispatch)
+});
+
+export const ConnectedPollutionMap = connect(mapStateToProps, mapDispatchToProps)(PollutionMap);
 
 const PollutionMapWrapper = () => {
 
