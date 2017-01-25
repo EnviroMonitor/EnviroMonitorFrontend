@@ -8,13 +8,13 @@ import {
 
 const initialState = {
     isFetching: false,
-    data: []
+    data:  Immutable.fromJS([])
 };
 
 const mapData = (state = Immutable.fromJS(initialState), action) => {
     switch (action.type) {
         case INVALIDATE_LOCATION_DATA:
-            return state.set('data', []);
+            return state.set('data', Immutable.fromJS([]));
         case FETCH_DATA_FOR_LOCATION:
             return state.set('isFetching', true);
         case RECEIVE_DATA_FOR_LOCATION:

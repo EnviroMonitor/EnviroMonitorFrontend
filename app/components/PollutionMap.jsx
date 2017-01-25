@@ -10,13 +10,37 @@ import { invalidateAndFetchData } from '../actions';
 
 export class PollutionMap extends React.Component {
 
-    componentDidMount() {
-        console.info('invalidate!')
-        this.props.invalidateAndFetchData([52.229, 21.011], 5, 5);
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            mapCenter: [52.229, 21.011]
+        };
+    }
+
+    componentDidMount () {
+        this.getGeolocation();
+    }
+
+    getGeolocation () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                this.updatePosition(position.coords.latitude, position.coords.longitude);
+            });
+
+        }
+        // TODO - some geolocation warning? Or a fallback of some kind?
+    }
+
+    updatePosition(latitude, longitude) {
+        this.setState({
+            mapCenter: [latitude, longitude]
+        });
+        this.props.invalidateAndFetchData([latitude, longitude], 5, 5);
     }
 
     render () {
-        const center = [52.229, 21.011];
+        const { mapCenter } = this.state;
 
         const data = this.props.data.toJS();
 
@@ -42,7 +66,7 @@ export class PollutionMap extends React.Component {
             );
         });
 
-        return (<Map center={center} zoom={13}>
+        return (<Map center={mapCenter} zoom={13}>
             {this.props.mapSpec}
             {markers}
         </Map>)
