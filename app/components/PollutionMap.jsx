@@ -27,7 +27,6 @@ export class PollutionMap extends React.Component {
             navigator.geolocation.getCurrentPosition((position) => {
                 this.updatePosition(position.coords.latitude, position.coords.longitude);
             });
-
         }
         // TODO - some geolocation warning? Or a fallback of some kind?
     }
@@ -41,7 +40,6 @@ export class PollutionMap extends React.Component {
 
     render () {
         const { mapCenter } = this.state;
-
         const data = this.props.data.toJS();
 
         const markers = data.map((markerData, iterator) => {

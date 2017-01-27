@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import { METRIC_TYPES } from '../../app/helpers/mapMarkers';
 import { Map, Marker } from 'react-leaflet';
+import geolocate from 'mock-geolocation';
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
@@ -80,6 +81,36 @@ describe('<PollutionMap/>', () => {
 
         it('renders the wrapper correctly', () => {
             expect(wrapper.find(ConnectedPollutionMap)).to.have.length(1);
+        });
+    });
+
+    describe('Tesing geolocation', () => {
+
+        it('properly changing location', () => {
+
+            geolocate.use();
+
+            wrapper = shallow(<ConnectedPollutionMap/>, {
+                context: {
+                    store
+                }
+            });
+
+            geolocate.send({
+                latitude: 52.129,
+                longitude: 21.111,
+            });
+
+            setTimeout( function () {
+                try {
+                    expect(wrapper.dive().state()).to.deep.equal({mapCenter: [52.129, 21.111]});
+                    done();
+                } catch( e ) {
+                    done( e );
+                }
+            }, 100 );
+
+            geolocate.restore()
         });
     });
 });
