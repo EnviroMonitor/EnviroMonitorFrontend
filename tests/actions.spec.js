@@ -97,5 +97,7 @@ describe('Actions', () => {
         store.dispatch(actions.invalidateAndFetchData([1, 1], 1, 1)).then(
             () => expect(store.getActions()).to.deep.equal(expectedActions)
         );
+
+        fetchMock.restore();
     });
 });
