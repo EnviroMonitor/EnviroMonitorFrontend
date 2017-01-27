@@ -27,7 +27,7 @@ export const invalidateAndFetchData = (location, width, height) => {
     return (dispatch) => {
         dispatch(invalidateLocationData());
         dispatch(fetchDataForLocation(location, width, height));
-        getAPI(GET_LOCATION_DATA, {
+        return getAPI(GET_LOCATION_DATA, {
             x: location[0],
             y: location[1],
             width,
