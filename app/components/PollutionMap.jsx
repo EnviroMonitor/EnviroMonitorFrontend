@@ -16,6 +16,9 @@ export class PollutionMap extends React.Component {
         this.state = {
             mapCenter: [52.229, 21.011]
         };
+
+        this.handleMoveEnd = this.handleMoveEnd.bind(this);
+        this.handleZoomEnd = this.handleZoomEnd.bind(this);
     }
 
     componentDidMount () {
@@ -31,11 +34,23 @@ export class PollutionMap extends React.Component {
         // TODO - some geolocation warning? Or a fallback of some kind?
     }
 
-    updatePosition(latitude, longitude) {
+    updatePosition (latitude, longitude) {
         this.setState({
             mapCenter: [latitude, longitude]
         });
         this.props.invalidateAndFetchData([latitude, longitude], 5, 5);
+    }
+
+    handleMoveEnd (event) {
+        console.info(this.refs.map.leafletElement.getCenter());
+        console.info(this.refs.map.leafletElement.getZoom());
+        console.info(this.refs.map.leafletElement.getBounds());
+    }
+
+    handleZoomEnd (event) {
+        console.info(this.refs.map.leafletElement.getCenter());
+        console.info(this.refs.map.leafletElement.getZoom());
+        console.info(this.refs.map.leafletElement.getBounds());
     }
 
     render () {
@@ -64,7 +79,7 @@ export class PollutionMap extends React.Component {
             );
         });
 
-        return (<Map center={mapCenter} zoom={13}>
+        return (<Map center={mapCenter} ref='map' onMoveend={this.handleMoveEnd} onZoomend={this.handleZoomEnd} zoom={13}>
             {this.props.mapSpec}
             {markers}
         </Map>)
