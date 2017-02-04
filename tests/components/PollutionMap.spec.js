@@ -1,14 +1,16 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
-import { ConnectedPollutionMap } from '../../app/components/PollutionMap';
-import PollutionMapWrapper from '../../app/components/PollutionMap';
 import Immutable from 'immutable';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
+import geolocate from 'mock-geolocation';
+import sinon from 'sinon';
+
+import { ConnectedPollutionMap, PollutionMap } from '../../app/components/PollutionMap';
+import PollutionMapWrapper from '../../app/components/PollutionMap';
 import { METRIC_TYPES } from '../../app/helpers/mapMarkers';
 import { Map, Marker } from 'react-leaflet';
-import geolocate from 'mock-geolocation';
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
@@ -71,17 +73,58 @@ describe('<PollutionMap/>', () => {
     });
 
     describe('Testing the wrapper', () => {
+        const fetchDataSpy = sinon.spy();
         beforeEach(() => {
-            wrapper = shallow(<PollutionMapWrapper/>, {
-                context: {
-                    store
+            wrapper = shallow(<PollutionMap
+                isFetching={initialState.mapData.isFetching}
+                data={Immutable.fromJS(initialState.mapData.data)}
+                invalidateAndFetchData={fetchDataSpy}
+            />);
+
+            wrapper.instance().refs = {
+                map: {
+                    leafletElement: {
+                        getZoom: () => 10,
+                        getBounds: () => ({
+                            getNorthEast:  () => [2, 2],
+                            getSouthWest: () => [3, 3]
+                        }),
+                        getCenter: () => ({
+                            lat: 1,
+                            lng: 1
+                        })
+                    }
                 }
-            });
+            };
         });
 
         it('renders the wrapper correctly', () => {
-            expect(wrapper.find(ConnectedPollutionMap)).to.have.length(1);
+            expect(wrapper.find(Map)).to.have.length(1);
         });
+
+        it('check if updates on handleMoveEnd when lastUpdated > 20', () => {
+            wrapper.setState({lastUpdated: Date.now() - 100});
+            wrapper.instance().handleMoveEnd();
+
+            const state = wrapper.state();
+
+            expect(state.mapCenter).to.deep.equal([1, 1]);
+            expect(state.zoom).to.equal(10);
+            expect(fetchDataSpy.calledOnce).to.equal(true);
+            expect(fetchDataSpy.calledWith([2, 2], [3, 3])).to.equal(true);
+        });
+
+        it('check if updates on handleMoveEnd when lastUpdated < 20', () => {
+            wrapper.setState({lastUpdated: Date.now() - 10});
+            wrapper.instance().handleMoveEnd();
+
+            const state = wrapper.state();
+
+            expect(state.mapCenter).to.deep.equal([52.229, 21.011]);
+            expect(state.zoom).to.equal(13);
+            expect(fetchDataSpy.calledWith([2, 2], [3, 3])).to.equal(true);
+        });
+
     });
 
     describe('Tesing geolocation', () => {
