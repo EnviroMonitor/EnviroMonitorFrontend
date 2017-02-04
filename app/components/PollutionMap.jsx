@@ -15,11 +15,11 @@ export class PollutionMap extends React.Component {
 
         this.state = {
             mapCenter: [52.229, 21.011],
-            zoom: 13
+            zoom: 13,
+            lastUpdated: Date.now()
         };
 
         this.handleMoveEnd = this.handleMoveEnd.bind(this);
-        this.handleZoomEnd = this.handleZoomEnd.bind(this);
     }
 
     componentDidMount () {
@@ -40,24 +40,17 @@ export class PollutionMap extends React.Component {
         const zoom = this.refs.map.leafletElement.getZoom();
         this.setState({
             mapCenter: [lat, lng],
-            zoom
+            zoom,
+            lastUpdated: Date.now()
         });
         this.props.invalidateAndFetchData(bounds.getNorthEast(), bounds.getSouthWest());
     }
 
     handleMoveEnd () {
-        console.info('center', this.refs.map.leafletElement.getCenter());
-        console.info('zoom', this.refs.map.leafletElement.getZoom());
-        console.info('bounds', this.refs.map.leafletElement.getBounds());
-
-        const center = this.refs.map.leafletElement.getCenter();
-        this.updatePosition(center.lat, center.lng);
-    }
-
-    handleZoomEnd () {
-        console.info('center', this.refs.map.leafletElement.getCenter());
-        console.info('zoom', this.refs.map.leafletElement.getZoom());
-        console.info('bounds', this.refs.map.leafletElement.getBounds());
+        if (Date.now() - this.state.lastUpdated > 20) {
+            const center = this.refs.map.leafletElement.getCenter();
+            this.updatePosition(center.lat, center.lng);
+        }
     }
 
     extractMarkers(stationData) {
@@ -94,7 +87,6 @@ export class PollutionMap extends React.Component {
             <Map center={mapCenter}
                  ref='map'
                  onMoveend={this.handleMoveEnd}
-                 onZoomend={this.handleZoomEnd}
                  zoom={zoom}>
                 {this.props.mapSpec}
                 {markers}
