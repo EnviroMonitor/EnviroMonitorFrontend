@@ -72,7 +72,21 @@ describe('<PollutionMap/>', () => {
         });
     });
 
-    describe('Testing the wrapper', () => {
+    describe('Testing PollutionMapWrapper wrapper for coverage', () => {
+        beforeEach(() => {
+            wrapper = shallow(<PollutionMapWrapper/>, {
+                context: {
+                    store
+                }
+            });
+        });
+
+        it('renders the wrapper correctly', () => {
+            expect(wrapper.find(ConnectedPollutionMap)).to.have.length(1);
+        });
+    });
+
+    describe('Testing the PollutionMap functions', () => {
         const fetchDataSpy = sinon.spy();
         beforeEach(() => {
             wrapper = shallow(<PollutionMap
@@ -125,6 +139,23 @@ describe('<PollutionMap/>', () => {
             expect(fetchDataSpy.calledWith([2, 2], [3, 3])).to.equal(true);
         });
 
+        it('properly changing location, when method is called directly (for coverage)', () => {
+            window.navigator.geolocation = {
+                getCurrentPosition: (funcToCall) => {
+                    funcToCall({
+                        coords: {
+                            latitude: 52.129,
+                            longitude: 21.111
+                        }
+                    })
+                }
+            };
+
+            wrapper.instance().getGeolocation();
+            expect(wrapper.state().mapCenter).to.deep.equal([52.129, 21.111]);
+
+            window.navigator.geolocation = undefined;
+        });
     });
 
     describe('Tesing geolocation', () => {
