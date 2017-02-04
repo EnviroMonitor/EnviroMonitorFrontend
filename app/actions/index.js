@@ -6,11 +6,10 @@ export const FETCH_DATA_FOR_LOCATION = 'FETCH_DATA_FOR_LOCATION';
 export const RECEIVE_DATA_FOR_LOCATION = 'RECEIVE_DATA_FOR_LOCATION';
 export const INVALIDATE_LOCATION_DATA = 'INVALIDATE_LOCATION_DATA';
 
-export const fetchDataForLocation = (location, width, height) => ({
+export const fetchDataForLocation = (northEast, southWest) => ({
     type: FETCH_DATA_FOR_LOCATION,
-    location,
-    width,
-    height
+    northEast,
+    southWest
 });
 
 export const receiveDataForLocation = (data) => ({
@@ -23,15 +22,13 @@ export const invalidateLocationData = () => ({
 });
 
 
-export const invalidateAndFetchData = (location, width, height) => {
+export const invalidateAndFetchData = (northEast, southWest) => {
     return (dispatch) => {
         dispatch(invalidateLocationData());
-        dispatch(fetchDataForLocation(location, width, height));
+        dispatch(fetchDataForLocation(northEast, southWest));
         return getAPI(GET_LOCATION_DATA, {
-            x: location[0],
-            y: location[1],
-            width,
-            height
+            northEast,
+            southWest
         }).then((response) => {
                 dispatch(receiveDataForLocation(
                     [

@@ -15,11 +15,10 @@ describe('Actions', () => {
     it('Create basic test for fetchDataForLocation', () => {
         const expectedAction = {
             type: actions.FETCH_DATA_FOR_LOCATION,
-            location: [1, 1],
-            width: 1,
-            height: 1
+            northEast: [1, 1],
+            southWest: [1, 1]
         };
-        expect(actions.fetchDataForLocation([1, 1], 1, 1)).to.deep.equal(expectedAction);
+        expect(actions.fetchDataForLocation([1, 1], [1, 1])).to.deep.equal(expectedAction);
     });
 
     it('Create basic test for receiveDataForLocation', () => {
@@ -52,9 +51,8 @@ describe('Actions', () => {
             },
             {
                 type: actions.FETCH_DATA_FOR_LOCATION,
-                location: [1, 1],
-                width: 1,
-                height: 1
+                northEast: [1, 1],
+                southWest: [1, 1]
             },
             {
                 type: actions.RECEIVE_DATA_FOR_LOCATION,
@@ -94,7 +92,7 @@ describe('Actions', () => {
             body: {}
         });
 
-        store.dispatch(actions.invalidateAndFetchData([1, 1], 1, 1)).then(
+        store.dispatch(actions.invalidateAndFetchData([1, 1], [1, 1])).then(
             () => expect(store.getActions()).to.deep.equal(expectedActions)
         );
 
