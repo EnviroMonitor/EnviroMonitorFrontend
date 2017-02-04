@@ -53,20 +53,21 @@ export class PollutionMap extends React.Component {
         }
     }
 
+    getMarkerIcon(pollutionLevel) {
+        if (pollutionLevel === null) {
+            return noDataIcon;
+        } else if (pollutionLevel < 50) {
+            return okIcon;
+        } else if (pollutionLevel < 150) {
+            return warningIcon;
+        } else {
+            return errorIcon;
+        }
+    }
+
     extractMarkers(stationData) {
         return stationData.map((markerData, iterator) => {
-            const value = markerData.value;
-            let icon;
-            if (value === null) {
-                icon = noDataIcon;
-            } else if (value < 50) {
-                icon = okIcon;
-            } else if (value < 150) {
-                icon = warningIcon;
-            } else {
-                icon = errorIcon;
-            }
-
+            const icon = this.getMarkerIcon(markerData.value);
             return (
                 <Marker key={iterator} position={markerData.position} icon={icon}>
                     <Popup>
