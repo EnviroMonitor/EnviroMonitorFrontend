@@ -1,1 +1,1 @@
-export const GET_LOCATION_DATA = '/location/';
+export const API_GET_STATION_DATA = '/station/';

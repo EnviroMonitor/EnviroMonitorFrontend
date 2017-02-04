@@ -1,5 +1,5 @@
 import { getAPI } from '../request';
-import { GET_LOCATION_DATA } from '../urls'
+import { API_GET_STATION_DATA } from '../urls'
 import { METRIC_TYPES } from '../helpers/mapMarkers';
 
 export const FETCH_DATA_FOR_LOCATION = 'FETCH_DATA_FOR_LOCATION';
@@ -26,7 +26,7 @@ export const invalidateAndFetchData = (northEast, southWest) => {
     return (dispatch) => {
         dispatch(invalidateLocationData());
         dispatch(fetchDataForLocation(northEast, southWest));
-        return getAPI(GET_LOCATION_DATA, {
+        return getAPI(API_GET_STATION_DATA, {
             northEast,
             southWest
         }).then((response) => {
