@@ -5,7 +5,7 @@ export const FETCH_DATA_FOR_LOCATION = 'FETCH_DATA_FOR_LOCATION';
 export const RECEIVE_DATA_FOR_LOCATION = 'RECEIVE_DATA_FOR_LOCATION';
 export const INVALIDATE_LOCATION_DATA = 'INVALIDATE_LOCATION_DATA';
 
-export const fetchDataForLocation = (northEast, southWest) => ({
+export const fetchDataForLocation = (southWest, northEast) => ({
     type: FETCH_DATA_FOR_LOCATION,
     northEast,
     southWest
@@ -21,13 +21,12 @@ export const invalidateLocationData = () => ({
 });
 
 
-export const invalidateAndFetchData = (northEast, southWest) => {
+export const invalidateAndFetchData = (southWest, northEast) => {
     return (dispatch) => {
         dispatch(invalidateLocationData());
-        dispatch(fetchDataForLocation(northEast, southWest));
+        dispatch(fetchDataForLocation(southWest, northEast));
         return getAPI(API_GET_STATION_DATA, {
-            northEast,
-            southWest
+            in_bbox: southWest.lat + "," + southWest.lng + "," + northEast.lat + "," + northEast.lng
         }).then((response) => {
                 dispatch(receiveDataForLocation(
                     [

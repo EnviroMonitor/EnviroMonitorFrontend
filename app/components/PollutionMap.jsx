@@ -43,7 +43,7 @@ export class PollutionMap extends React.Component {
             zoom,
             lastUpdated: Date.now()
         });
-        this.props.invalidateAndFetchData(bounds.getNorthEast(), bounds.getSouthWest());
+        this.props.invalidateAndFetchData(bounds.getSouthWest(), bounds.getNorthEast());
     }
 
     handleMoveEnd () {
