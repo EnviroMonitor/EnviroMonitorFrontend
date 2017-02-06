@@ -67,7 +67,7 @@ export class PollutionMap extends React.Component {
 
     extractMarkers(stationData) {
         return stationData.map((markerData, iterator) => {
-            const icon = this.getMarkerIcon(markerData.value);
+            const icon = this.getMarkerIcon(markerData.last_metering.pm10);
             return (
                 <Marker key={iterator} position={markerData.position} icon={icon}>
                     <Popup>
