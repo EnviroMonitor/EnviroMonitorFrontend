@@ -26,4 +26,3 @@ const mapData = (state = Immutable.fromJS(initialState), action) => {
 };
 
 export default mapData
-
