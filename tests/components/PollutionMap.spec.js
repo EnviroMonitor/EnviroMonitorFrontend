@@ -133,7 +133,7 @@ describe('<PollutionMap/>', () => {
             expect(state.mapCenter).to.deep.equal([1, 1]);
             expect(state.zoom).to.equal(10);
             expect(fetchDataSpy.calledOnce).to.equal(true);
-            expect(fetchDataSpy.calledWith([2, 2], [3, 3])).to.equal(true);
+            expect(fetchDataSpy.calledWith([3, 3], [2, 2])).to.equal(true);
         });
 
         it('check if updates on handleMoveEnd when lastUpdated < 20', () => {
@@ -144,7 +144,7 @@ describe('<PollutionMap/>', () => {
 
             expect(state.mapCenter).to.deep.equal([52.229, 21.011]);
             expect(state.zoom).to.equal(13);
-            expect(fetchDataSpy.calledWith([2, 2], [3, 3])).to.equal(true);
+            expect(fetchDataSpy.calledWith([3, 3], [2, 2])).to.equal(true);
         });
 
         it('properly changing location, when method is called directly (for coverage)', () => {
