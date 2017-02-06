@@ -5,7 +5,6 @@ import fetchMock from 'fetch-mock';
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
-import { METRIC_TYPES } from '../app/helpers/mapMarkers';
 import { FAKE_DOMAIN } from '../app/request';
 
 import * as actions from '../app/actions';
@@ -26,10 +25,12 @@ describe('Actions', () => {
             type: actions.RECEIVE_DATA_FOR_LOCATION,
             data: [
                 {
-                    type: METRIC_TYPES.PM10,
-                    position: [52.229, 21.032],
-                    description: "This marker should be blue",
-                    value: null
+                    position: [52.259, 21.045],
+                    description: "This marker should be red",
+                    last_metering: {
+                        pm10: 200,
+                        pm25: 200
+                    }
                 },
             ]
         };
@@ -58,28 +59,36 @@ describe('Actions', () => {
                 type: actions.RECEIVE_DATA_FOR_LOCATION,
                 data: [
                     {
-                        type: METRIC_TYPES.PM10,
                         position: [52.229, 21.032],
                         description: "This marker should be blue",
-                        value: null
+                        last_metering: {
+                            pm10: null,
+                            pm25: null
+                        }
                     },
                     {
-                        type: METRIC_TYPES.PM10,
                         position: [52.217, 20.987],
                         description: "This marker should be green",
-                        value: 25
+                        last_metering: {
+                            pm10: 25,
+                            pm25: 25
+                        }
                     },
                     {
-                        type: METRIC_TYPES.PM10,
                         position: [52.236, 20.976],
                         description: "This marker should be orange",
-                        value: 75
+                        last_metering: {
+                            pm10: 75,
+                            pm25: 75
+                        }
                     },
                     {
-                        type: METRIC_TYPES.PM10,
                         position: [52.259, 21.045],
                         description: "This marker should be red",
-                        value: 200
+                        last_metering: {
+                            pm10: 200,
+                            pm25: 200
+                        }
                     },
                 ]
             }

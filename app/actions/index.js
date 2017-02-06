@@ -1,6 +1,5 @@
 import { getAPI } from '../request';
 import { API_GET_STATION_DATA } from '../urls'
-import { METRIC_TYPES } from '../helpers/mapMarkers';
 
 export const FETCH_DATA_FOR_LOCATION = 'FETCH_DATA_FOR_LOCATION';
 export const RECEIVE_DATA_FOR_LOCATION = 'RECEIVE_DATA_FOR_LOCATION';
@@ -34,7 +33,6 @@ export const invalidateAndFetchData = (northEast, southWest) => {
                     [
                         // TODO it should have data from repsonse
                         {
-                            type: METRIC_TYPES.PM10,
                             position: [52.229, 21.032],
                             description: "This marker should be blue",
                             last_metering: {
@@ -43,7 +41,6 @@ export const invalidateAndFetchData = (northEast, southWest) => {
                             }
                         },
                         {
-                            type: METRIC_TYPES.PM10,
                             position: [52.217, 20.987],
                             description: "This marker should be green",
                             last_metering: {
@@ -52,7 +49,6 @@ export const invalidateAndFetchData = (northEast, southWest) => {
                             }
                         },
                         {
-                            type: METRIC_TYPES.PM10,
                             position: [52.236, 20.976],
                             description: "This marker should be orange",
                             last_metering: {
@@ -61,7 +57,6 @@ export const invalidateAndFetchData = (northEast, southWest) => {
                             }
                         },
                         {
-                            type: METRIC_TYPES.PM10,
                             position: [52.259, 21.045],
                             description: "This marker should be red",
                             last_metering: {
