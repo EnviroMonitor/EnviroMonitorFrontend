@@ -4,9 +4,9 @@
   "description": "Frontend app for EnviroMonitor project",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register tests/**/*.spec.js",
+    "test": "mocha tests/testSetup.js tests/*",
     "test:watch": "npm run test -- --watch",
-    "coverage": "nyc npm run test",
+    "coverage": "nyc --reporter=text --reporter=text-summary --reporter=html npm run test",
     "coverage:coveralls": "nyc --reporter=text-lcov npm run test | coveralls",
     "start": "webpack-dev-server --content-base ./build/",
     "build": "webpack"
@@ -33,11 +33,17 @@
     "css-loader": "^0.26.1",
     "enzyme": "^2.6.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "fetch-mock": "^5.8.1",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.1",
+    "jsdom": "9.9.1",
+    "jsdom-global": "2.1.1",
     "mocha": "^3.2.0",
+    "mock-geolocation": "^1.0.11",
     "nyc": "^10.0.0",
     "purifycss-webpack-plugin": "^2.0.3",
     "react-addons-test-utils": "^15.4.1",
+    "redux-mock-store": "^1.2.1",
     "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
@@ -46,7 +52,36 @@
     "webpack-validator": "^2.2.11"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
+    "isomorphic-fetch": "^2.2.1",
+    "leaflet": "^1.0.2",
+    "lodash.assign": "^4.2.0",
+    "query-string": "^4.3.1",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react-dom": "^15.4.1",
+    "react-leaflet": "^1.0.2",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0",
+    "redux-immutable": "^3.0.9",
+    "redux-thunk": "^2.1.0"
+  },
+  "nyc": {
+    "lines": 90,
+    "statements": 90,
+    "functions": 90,
+    "branches": 90,
+    "include": [
+      "app/**/*.js",
+      "app/**/*.jsx"
+    ],
+    "exclude": [
+      "*.spec.js"
+    ],
+    "extension": [
+      ".jsx"
+    ],
+    "cache": true,
+    "all": true,
+    "check-coverage": true
   }
 }

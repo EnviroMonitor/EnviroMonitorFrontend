@@ -1,9 +1,14 @@
 import React from 'react';
+import PollutionMap from './components/PollutionMap';
+import DataHolder from './components/DataHolder';
 
 class Root extends React.Component {
     render () {
         return (
-            <h1>I've been rendered with React</h1>
+            <div className="root">
+                <PollutionMap/>
+                <DataHolder/>
+            </div>
         );
     }
 }

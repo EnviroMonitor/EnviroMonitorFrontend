@@ -140,3 +140,17 @@ exports.adjustJSX = function (paths) {
         }
     }
 };
+
+exports.addImages = function (paths) {
+    return {
+        module: {
+            loaders: [
+                {
+                    test: /\.(jpg|png)$/,
+                    loaders: ['file-loader'],
+                    include: paths
+                }
+            ]
+        }
+    }
+};
